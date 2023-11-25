@@ -7,6 +7,64 @@ from .categories import *
 from .core import *
 
 
+class DVB_Multiply:
+    NODE_NAME = "Multiply"
+    ICON = "⦁"
+    CATEGORY = NodeCategories.UTILS
+    RETURN_TYPES = ("FLOAT", "INT")
+    RETURN_NAMES = ("FLOAT", "INT")
+    FUNCTION = "result"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "multiple": ("INT", {"default": 2}),
+                "float": ("FLOAT", {"default": 0.0}),
+                "int": ("INT", {"default": 0})
+            }
+        }
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return hashed_as_strings(*values)
+
+    def result(self, multiple, **kwargs):
+        f = kwargs.get("float", 0.0)
+        i = kwargs.get("int", 0)
+        v = f * multiple + i * multiple
+        return (v, round(v))
+
+
+class DVB_Divide:
+    NODE_NAME = "Divide"
+    ICON = "÷"
+    CATEGORY = NodeCategories.UTILS
+    RETURN_TYPES = ("FLOAT", "INT")
+    RETURN_NAMES = ("FLOAT", "INT")
+    FUNCTION = "result"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "divisor": ("INT", {"default": 2}),
+                "float": ("FLOAT", {"default": 0.0}),
+                "int": ("INT", {"default": 0})
+            }
+        }
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return hashed_as_strings(*values)
+
+    def result(self, divisor, **kwargs):
+        f = kwargs.get("float", 0.0)
+        i = kwargs.get("int", 0)
+        v = (f + i) / divisor
+        return (v, math.floor(v))
+
+
 class DVB_Calculation:
     NODE_NAME = "Calculation"
     ICON = "🖩"

@@ -4,6 +4,67 @@ from .categories import *
 from .core import *
 
 
+class DVB_FrameSetOffset:
+    NODE_NAME = "Frame Set Index Offset"
+    ICON = "🔢"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "offset": ("INT", {"default": 0})
+            },
+        }
+
+    CATEGORY = NodeCategories.BATCH_EDIT
+    RETURN_TYPES = (FrameSet.TYPE_NAME,)
+    RETURN_NAMES = ("frames",)
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet, offset):
+        return (frames.reindexed(frames.first_index + offset),)
+
+
+class DVB_ConcatFrameSets:
+    NODE_NAME = "Frame Set Concatenation"
+    ICON = "🔗"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "a": (FrameSet.TYPE_NAME,),
+                "b": (FrameSet.TYPE_NAME,),
+                "offset_from_end": ("INT", {"default": 0}),
+                "step": ("INT", {"default": 1, "min": 1}),
+            },
+        }
+
+    CATEGORY = NodeCategories.BATCH_EDIT
+    RETURN_TYPES = (FrameSet.TYPE_NAME,)
+    RETURN_NAMES = ("frames",)
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, a: FrameSet, b: FrameSet, offset_from_end, step):
+        first_index = a.last_index + step + offset_from_end
+
+        if a.framerate != b.framerate:
+            on_node_error(DVB_MergeFrames,
+                          "Frame sets have different framerate {} and {} - cannot concatenate!".format(a.framerate,
+                                                                                                       b.framerate))
+
+        return (a.merge(b.reindexed(first_index, step)),)
+
+
 class DVB_MergeFrames:
     NODE_NAME = "Frame Set Merger"
     ICON = "🗍"
@@ -18,7 +79,7 @@ class DVB_MergeFrames:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH
+    CATEGORY = NodeCategories.BATCH_EDIT
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
@@ -52,7 +113,7 @@ class DVB_Splitter:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH
+    CATEGORY = NodeCategories.BATCH_EDIT
     RETURN_TYPES = (FrameSet.TYPE_NAME, FrameSet.TYPE_NAME)
     RETURN_NAMES = ("first_half", "second_half")
     FUNCTION = "result"

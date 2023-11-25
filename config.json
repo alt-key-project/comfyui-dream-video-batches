@@ -18,9 +18,12 @@
       "switches": "\u2b46",
       "batch": "\u21c9",
       "conditioning": "\u262f",
-      "Dream": "\u2728",
-      "DVB": "\ud83c\udfa5",
-      "edit": "\u2702"
+      "edit": "\u2702",
+      "DVB": "\ud83c\udfad"
     }
+  },
+  "paths": {
+    "default_input": "I:\\AI\\ComfyUI\\ComfyUI\\input",
+    "default_output": "I:\\AI\\ComfyUI\\ComfyUI\\output"
   }
 }

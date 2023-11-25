@@ -1,12 +1,16 @@
 {
   "Calculation [DVB]": "",
   "Create Frame Set [DVB]": "",
+  "Divide [DVB]": "",
   "Fade From Black [DVB]": "",
   "Fade To Black [DVB]": "",
   "Float Input [DVB]": "",
+  "Frame Set Concatenation [DVB]": "",
+  "Frame Set Index Offset [DVB]": "",
   "Frame Set Merger [DVB]": "",
   "Frame Set Splitter [DVB]": "",
   "Int Input [DVB]": "",
+  "Multiply [DVB]": "",
   "String Input [DVB]": "",
   "Text Input [DVB]": "",
   "Unwrap Frame Set [DVB]": ""

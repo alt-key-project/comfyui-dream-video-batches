@@ -6,9 +6,12 @@ from .inputfields import *
 from .transitions import *
 from .wrapping import *
 from .core import DVB_Config
+import json, os
 
 _NODE_CLASSES = [
     DVB_Calculation,
+    DVB_Multiply,
+    DVB_Divide,
     DVB_Splitter,
     DVB_InputFloat,
     DVB_InputInt,
@@ -16,6 +19,8 @@ _NODE_CLASSES = [
     DVB_InputString,
     DVB_ImagesToFrameSet,
     DVB_UnwrapFrameSet,
+    DVB_FrameSetOffset,
+    DVB_ConcatFrameSets,
     DVB_MergeFrames,
     DVB_FadeFromBlack,
     DVB_FadeToBlack
@@ -25,7 +30,7 @@ _SIGNATURE_SUFFIX = " [DVB]"
 
 MANIFEST = {
     "name": "Dream Video Batches",
-    "version": (0, 1, 0),
+    "version": (0, 2, 0),
     "author": "Dream Project",
     "project": "https://github.com/alt-key-project/comfyui-dream-video-batches",
     "description": "Various utility nodes for working with video batches in ComfyUI",

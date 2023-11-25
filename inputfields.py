@@ -1,6 +1,5 @@
 from .categories import *
-from .shared import *
-
+from .core import *
 
 class DVB_InputText:
     NODE_NAME = "Text Input"

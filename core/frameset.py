@@ -29,6 +29,15 @@ class FrameSet:
         if not len(tensor) == len(indices):
             raise Exception("Tensor length {}, indices {} - tensor shape {}".format(len(tensor), len(self.indices), tensor.shape))
 
+
+
+    def reindexed(self, first_index = 0, step = 1):
+        indices = list()
+        for i in range(len(self)):
+            indices.append(first_index + i * step)
+        return FrameSet(self._tensor, self.framerate, indices)
+
+
     @classmethod
     def from_images(cls, images: List[DVB_Image], framerate: FrameRate, indices: List[int] = None):
         return FrameSet(DVB_Image.join_to_tensor_data(images), framerate, indices)
@@ -38,6 +47,12 @@ class FrameSet:
         unindexed = list(map(lambda item: item.image, images))
         indices = list(map(lambda item: item.index, images))
         return FrameSet(DVB_Image.join_to_tensor_data(unindexed), framerate, indices)
+
+    @property
+    def last_index(self):
+        if self.is_empty:
+            return -1
+        return self.indices[-1]
 
     @property
     def first_index(self):
