@@ -1,0 +1,26 @@
+{
+  "debug": false,
+  "ui": {
+    "top_category": "DVB",
+    "prepend_icon_to_category": true,
+    "append_icon_to_category": false,
+    "prepend_icon_to_node": true,
+    "append_icon_to_node": false,
+    "category_icons": {
+      "animation": "\ud83c\udfa5",
+      "postprocessing": "\u2699",
+      "transforms": "\ud83d\udd00",
+      "curves": "\ud83d\udcc8",
+      "color": "\ud83c\udfa8",
+      "generate": "\u26a1",
+      "utils": "\ud83d\udee0",
+      "image": "\ud83c\udf04",
+      "switches": "\u2b46",
+      "batch": "\u21c9",
+      "conditioning": "\u262f",
+      "Dream": "\u2728",
+      "DVB": "\ud83c\udfa5",
+      "edit": "\u2702"
+    }
+  }
+}
