@@ -166,3 +166,29 @@ class DVB_Splitter:
         second_half = second_half_extra + second_half
         return (FrameSet.from_indexed_images(first_half, frames.framerate),
                 FrameSet.from_indexed_images(second_half, frames.framerate))
+
+
+class DVB_Reverse:
+    NODE_NAME = "Frame Set Reverse"
+    ICON = "⮠"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+            },
+        }
+
+    CATEGORY = NodeCategories.EDIT
+    RETURN_TYPES = (FrameSet.TYPE_NAME, )
+    RETURN_NAMES = ("frames", )
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet):
+        return (FrameSet.from_images(list(reversed(frames.images)), frames.framerate, frames.indices),)
+

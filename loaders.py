@@ -3,16 +3,35 @@ import os
 import random
 
 from .categories import NodeCategories
-from .dreamtypes import SharedTypes, FrameCounter
-from .shared import ALWAYS_CHANGED_FLAG, list_images_in_directory, DreamImage, list_files_in_directory
+from .core import *
 
 
-def _load_and_resize(image_path, resize_width, resize_height, mode) -> DreamImage:
-    return DreamImage(file_path=image_path).resize(resize_width, resize_height).convert(mode)
+class DVB_LoadImageFromPath:
+    NODE_NAME = "Load Image From Path"
+    CATEGORY = NodeCategories.IO
+    RETURN_TYPES = ("IMAGE",)
+    RETURN_NAMES = ("image",)
+    FUNCTION = "result"
+    ICON = "🖼"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "image_path": ("STRING", {"default": '', "multiline": False}),
+            }
+        }
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, image_path, **other):
+        return (DVB_Image.join_to_tensor_data([DVB_Image(file_path=image_path)]),)
 
 
 class DreamRandomBatchLoader:
-    CATEGORY = NodeCategories.BATCH
+    CATEGORY = NodeCategories.IO
     RETURN_TYPES = ("IMAGE",)
     RETURN_NAMES = ("image",)
     FUNCTION = "result"
@@ -59,7 +78,7 @@ class DreamRandomBatchLoader:
 
 
 class DreamImageBatchLoader:
-    CATEGORY = NodeCategories.BATCH
+    CATEGORY = NodeCategories.IO
     RETURN_TYPES = ("IMAGE",)
     RETURN_NAMES = ("image",)
     FUNCTION = "result"
@@ -108,40 +127,6 @@ class DreamImageBatchLoader:
         return (DreamImage.join_to_tensor_data(images),)
 
 
-class DreamDirContents:
-    NODE_NAME = "Directory Contents"
-    ICON = "💾"
-
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": SharedTypes.frame_counter | {
-                "directory_path": ("STRING", {"default": '', "multiline": False}),
-                "pattern": ("STRING", {"default": '*', "multiline": False}),
-                "indexing": (["numeric", "alphabetic order"],)
-            }
-        }
-
-    CATEGORY = NodeCategories.UTILS
-    RETURN_TYPES = ("STRING","STRING")
-    RETURN_NAMES = ("file_path", "name")
-    FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values):
-        return ALWAYS_CHANGED_FLAG
-
-    def result(self, frame_counter: FrameCounter, directory_path, pattern, indexing, **other):
-        entries = list_files_in_directory(directory_path, pattern, indexing == "alphabetic order",
-                                          (".mpg", ".mp4", ".avi", ".xvid", ".wmv", ".flv", ".mkv", ".webm"))
-        entry = entries.get(frame_counter.current_frame, None)
-        if entry is None:
-            raise Exception("No such entry!")
-        p = os.path.normpath(os.path.abspath(entry[0]))
-        nm, _ = os.path.splitext(os.path.basename(p))
-        return (entry[0], nm)
-
-
 class DreamImageSequenceInputWithDefaultFallback:
     NODE_NAME = "Image Sequence Loader"
     ICON = "💾"
@@ -168,7 +153,7 @@ class DreamImageSequenceInputWithDefaultFallback:
     def IS_CHANGED(cls, *values):
         return ALWAYS_CHANGED_FLAG
 
-    def result(self, frame_counter: FrameCounter, directory_path, pattern, indexing, **other):
+    def result(self, frame_counter, directory_path, pattern, indexing, **other):
         default_image = other.get("default_image", None)
         entries = list_images_in_directory(directory_path, pattern, indexing == "alphabetic order")
         entry = entries.get(frame_counter.current_frame, None)

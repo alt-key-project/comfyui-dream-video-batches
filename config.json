@@ -21,7 +21,9 @@
       "edit": "\u2702",
       "DVB": "\ud83c\udfad",
       "camera": "\ud83c\udfa5",
-      "base": "\ud83c\udf9e"
+      "base": "\ud83c\udf9e",
+      "transitions": "\ud83c\udfac",
+      "io": "\ud83d\udcbe"
     }
   },
   "paths": {

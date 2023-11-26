@@ -14,3 +14,4 @@ class NodeCategories:
     TRANSITIONS = "transitions"
     CAMERA = "camera"
     EDIT = "edit"
+    IO = "io"

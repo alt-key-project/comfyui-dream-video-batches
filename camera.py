@@ -5,6 +5,47 @@ from .categories import *
 from .core import *
 
 
+class DVB_ZoomIn:
+    NODE_NAME = "Linear Camera Zoom"
+    ICON = "🔭"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "output_width": ("INT", {"default": 512, "min": 1}),
+                "output_height": ("INT", {"default": 512, "min": 1})
+            },
+        }
+
+    CATEGORY = NodeCategories.CAMERA
+    RETURN_TYPES = (FrameSet.TYPE_NAME,)
+    RETURN_NAMES = ("frames",)
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet, output_width: int, output_height: int):
+        assert isinstance(frames, FrameSet)
+        gc_comfyui()
+        proc = DVB_ImageBatchProcessor(frames.tensor)
+        output_width = min(frames.image_dimensions[0], output_width)
+        output_height = min(frames.image_dimensions[1], output_height)
+
+        def do_zoom(n: int, total: int, image: DVB_Image):
+            factor = n / (total - 1.0)
+            w = (image.width - output_width) * factor + output_width
+            h = (image.height - output_height) * factor + output_height
+            c = image.quad.center
+            return image.crop(c.x - w * 0.5, c.y - h * 0.5, c.x + w * 0.5, c.y + h * 0.5)
+
+        return (FrameSet(proc.process(do_zoom), frames.framerate, frames.indices),)
+
+
+
 class DVB_LinearCameraPan:
     NODE_NAME = "Linear Camera Pan"
     ICON = "👉"

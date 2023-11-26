@@ -18,9 +18,11 @@ _EMBEDDED_CONFIGURATION = {
         "prepend_icon_to_node": True,
         "append_icon_to_node": False,
         "category_icons": {
+            "io": "💾",
             "animation": "🎥",
             "postprocessing": "⚙",
             "transforms": "🔀",
+            "transitions": "🎬",
             "curves": "📈",
             "color": "🎨",
             "generate": "⚡",

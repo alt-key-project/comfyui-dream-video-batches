@@ -4,7 +4,7 @@ from .node_support import ALWAYS_CHANGED_FLAG
 from .frameset import FrameSet
 from .framerate import FrameRate
 from .config import DVB_Config
-from .utility import hashed_as_strings
+from .utility import hashed_as_strings, ForEachState
 from .err import on_node_error, raise_error
 from .vector import Quad2d, Vector2d
 from .memory import gc_comfyui
