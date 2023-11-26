@@ -18,7 +18,7 @@ class DVB_ImagesToFrameSet:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH
+    CATEGORY = NodeCategories.BASE
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "work"
@@ -48,7 +48,7 @@ class DVB_UnwrapFrameSet:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH
+    CATEGORY = NodeCategories.BASE
     RETURN_TYPES = ("IMAGE", "FLOAT", "INT", "INT", "INT", "INT", "INT", "INT")
     RETURN_NAMES = ("images", "framerate_float", "framerate_rounded", "framerate_base", "framerate_divisor",
                     "first_index", "indexed_length", "frame_count")

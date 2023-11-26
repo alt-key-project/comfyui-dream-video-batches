@@ -24,6 +24,8 @@ _EMBEDDED_CONFIGURATION = {
             "curves": "📈",
             "color": "🎨",
             "generate": "⚡",
+            "camera": "🎥",
+            "base": "🎭",
             "utils": "🛠",
             "edit": "✂",
             "image": "🌄",

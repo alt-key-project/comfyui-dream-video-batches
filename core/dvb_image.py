@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
+from functools import cache
 
 import numpy
 import torch
-from .err import raise_error
 from PIL import Image, ImageFilter, ImageEnhance
 from PIL.Image import Resampling
 from PIL.ImageDraw import ImageDraw
 from torch import Tensor
-
+from .vector import *
 
 def _convert_tensor_image_to_pil(tensor_image) -> Image:
     return Image.fromarray(numpy.clip(255. * tensor_image.cpu().numpy().squeeze(), 0, 255).astype(numpy.uint8))
@@ -30,6 +30,11 @@ class DVB_Image:
         self._image_draw = None
         self._numpy = None
 
+    @property
+    def quad(self):
+        return Quad2d(0.0, 0.0, self.dimensions[0], self.dimensions[1])
+
+
     @classmethod
     def join_to_tensor_data(cls, images):
         def _to_tensor(img):
@@ -40,10 +45,6 @@ class DVB_Image:
                 t = img.tensor_image
             return t
         image_tensors = [_to_tensor(image) for image in images]
-        dims = 0
-        for t in image_tensors:
-            print("Image tensor is shape {}".format(t.shape))
-
         tensor = torch.from_numpy(numpy.array(image_tensors))
         assert len(tensor) == len(images)
         return tensor
@@ -80,12 +81,29 @@ class DVB_Image:
         return self._numpy
 
     @property
+    @cache
+    def dimensions(self):
+        if self._tensor_image is not None:
+            s = self._tensor_image.shape
+            return s[1], s[0]
+        else:
+            return self.pil_image.width, self.pil_image.height
+
+    def crop(self, x1: int, y1:int, x2: int, y2: int):
+        left = min(x1,x2)
+        right = max(x1,x2)
+        bottom = max(y1,y2)
+        top = min(y1,y2)
+        return DVB_Image(pil_image=self.pil_image.crop((left, top, right, bottom)))
+
+
+    @property
     def width(self):
-        return self.pil_image.width
+        return self.dimensions[0]
 
     @property
     def height(self):
-        return self.pil_image.height
+        return self.dimensions[1]
 
     @property
     def size(self):

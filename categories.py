@@ -10,6 +10,7 @@ class NodeCategories:
     UTILS = "utils"
     UTILS_SWITCHES = "utils/switches"
 
-    BATCH = "batch"
-    BATCH_TRANSITIONS = BATCH + "/transitions"
-    BATCH_EDIT = BATCH + "/edit"
+    BASE = "base"
+    TRANSITIONS = "transitions"
+    CAMERA = "camera"
+    EDIT = "edit"

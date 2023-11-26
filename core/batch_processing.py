@@ -13,9 +13,7 @@ class DVB_ImageBatchProcessor:
     def process(self, proc_fun) -> torch.Tensor:
         output = list()
         for i in range(self._size):
-            exec_result = proc_fun(i, self._size, DVB_Image(self._tensor[i]), **self._extra_args)
-            for i in range(len(exec_result)):
-                r = exec_result[i]
-                if isinstance(r, DVB_Image):
-                    output.append(r)
+            r = proc_fun(i, self._size, DVB_Image(self._tensor[i]), **self._extra_args)
+            if isinstance(r, DVB_Image):
+                output.append(r)
         return DVB_Image.join_to_tensor_data(output)

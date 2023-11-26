@@ -4,6 +4,33 @@ from .categories import *
 from .core import *
 
 
+class DVB_FrameSetReindex:
+    NODE_NAME = "Frame Set Reindex"
+    ICON = "🔢"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "start": ("INT", {"default": 0}),
+                "step": ("INT", {"default": 1})
+            },
+        }
+
+    CATEGORY = NodeCategories.BASE
+    RETURN_TYPES = (FrameSet.TYPE_NAME,)
+    RETURN_NAMES = ("frames",)
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet, start, step):
+        return (frames.reindexed(start, step),)
+
+
 class DVB_FrameSetOffset:
     NODE_NAME = "Frame Set Index Offset"
     ICON = "🔢"
@@ -17,7 +44,7 @@ class DVB_FrameSetOffset:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH_EDIT
+    CATEGORY = NodeCategories.BASE
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
@@ -45,7 +72,7 @@ class DVB_ConcatFrameSets:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH_EDIT
+    CATEGORY = NodeCategories.EDIT
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
@@ -79,7 +106,7 @@ class DVB_MergeFrames:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH_EDIT
+    CATEGORY = NodeCategories.EDIT
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
@@ -113,7 +140,7 @@ class DVB_Splitter:
             },
         }
 
-    CATEGORY = NodeCategories.BATCH_EDIT
+    CATEGORY = NodeCategories.EDIT
     RETURN_TYPES = (FrameSet.TYPE_NAME, FrameSet.TYPE_NAME)
     RETURN_NAMES = ("first_half", "second_half")
     FUNCTION = "result"
@@ -137,6 +164,5 @@ class DVB_Splitter:
             second_half_extra.insert(0, first_half[-(n + 1)])
         first_half = first_half + first_half_extra
         second_half = second_half_extra + second_half
-        print("Split {} into {} + {} (overlap {})".format(len(images), len(first_half), len(second_half), overlap))
         return (FrameSet.from_indexed_images(first_half, frames.framerate),
                 FrameSet.from_indexed_images(second_half, frames.framerate))
