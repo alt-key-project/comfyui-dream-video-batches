@@ -34,7 +34,7 @@ _NODE_CLASSES = [
     DVB_InbetweenFrames,
     DVB_ForEachFilename,
     DVB_ForEachCheckpoint,
-    DVB_ZoomIn,
+    DVB_Zoom,
     DVB_LoadImageFromPath,
     DVB_Reverse
 ]
@@ -43,7 +43,7 @@ _SIGNATURE_SUFFIX = " [DVB]"
 
 MANIFEST = {
     "name": "Dream Video Batches",
-    "version": (0, 5, 0),
+    "version": (0, 6, 0),
     "author": "Dream Project",
     "project": "https://github.com/alt-key-project/comfyui-dream-video-batches",
     "description": "Various utility nodes for working with video batches in ComfyUI",
