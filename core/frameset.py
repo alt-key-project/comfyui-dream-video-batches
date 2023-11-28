@@ -36,7 +36,6 @@ class FrameSet:
         if self.is_empty:
             return (0, 0)
         s = self._tensor[0].shape
-        print("Shape is {}".format(s))
         return s[1], s[0]
 
     def reindexed(self, first_index=0, step=1):
@@ -124,19 +123,16 @@ class FrameSet:
         return self._tensor
 
     @property
-    @cache
     def indexed_length(self):
         if self.is_empty:
             return 0
         return self.indices[-1] - self.indices[0] + 1
 
     @property
-    @cache
     def indexed_images(self) -> List[IndexedImage]:
         return list(map(lambda tp: IndexedImage(tp[1], tp[0]), zip(self.indices, self.images)))
 
     @property
-    @cache
     def images(self):
         return DVB_Image.images_from_tensor_data(self._tensor)
 
@@ -191,12 +187,6 @@ class FrameSet:
         c = images_after[0:fade_length]
         d = images_after[fade_length:]
 
-        print("first : {}".format(len(images_first)))
-        print("after : {}".format(len(images_after)))
-        print("a : {}".format(len(a)))
-        print("b : {}".format(len(b)))
-        print("c : {}".format(len(c)))
-        print("d : {}".format(len(d)))
 
         assert (len(a) + len(b)) == len(images_first)
         assert len(b) == len(c)

@@ -89,6 +89,10 @@ class DVB_ForEachFilename:
     FUNCTION = "exec"
 
     @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
@@ -108,7 +112,6 @@ class DVB_ForEachFilename:
         state = ForEachState(statefile)
 
         files = list(glob.glob(os.path.join(search_path, pattern), recursive=False))
-        print("FILES = {}".format(str(files)))
         state.add_files_to_process(files)
 
         next_path = state.pop()
@@ -137,6 +140,10 @@ class DVB_ForEachCheckpoint:
                 "directory": ("STRING", {"default": comfy_paths.input_directory}),
             }
         }
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
 
     def exec(self, id: str, directory: str, **kwargs):
         directory = directory.strip('"')
@@ -221,3 +228,45 @@ class DVB_FrameDimensions:
             return (width, height, final_width, final_height)
         else:
             return (height, width, final_height, final_width)
+
+
+class DVB_TraceMalloc:
+    NODE_NAME = "Trace Memory Allocation"
+    ICON = "⌗"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "string": ("STRING", {"default":""}),
+            }
+        }
+
+    CATEGORY = NodeCategories.UTILS
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("string",)
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, string):
+        import tracemalloc, gc
+
+        print("!! Forcing GC")
+        gc_comfyui()
+        gc.collect()
+        if not tracemalloc.is_tracing():
+            print("!! TRACEMALLOC INIT")
+            tracemalloc.start()
+        else:
+            print("!! TRACEMALLOC RUNNING")
+
+
+        snapshot = tracemalloc.take_snapshot()
+        top_stats = snapshot.statistics('lineno')
+
+        for stat in top_stats[:10]:
+            print("!! TRACEMALLOC: " + str(stat))
+        return (string,)

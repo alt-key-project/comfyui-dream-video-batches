@@ -90,7 +90,6 @@ class Quad2d:
         self._default_forgiveness = self.maxcorner.sub(self.mincorner).length() * 0.00001
 
     @property
-    @cache
     def diagonal_length(self):
         return self.maxcorner.sub(self.mincorner).length()
 
@@ -105,7 +104,6 @@ class Quad2d:
                 self.maxcorner, Vector2d(self.maxcorner.x, self.mincorner.y))
 
     @property
-    @cache
     def center(self):
         return self.maxcorner.add(self.mincorner).multiply(0.5)
 

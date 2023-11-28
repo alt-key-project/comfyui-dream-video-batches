@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from typing import List
 
+from PIL.Image import Resampling
+
 from .categories import *
 from .core import *
 
@@ -38,12 +40,14 @@ class DVB_Zoom:
 
         def do_zoom(n: int, total: int, image: DVB_Image):
             factor = n / (total - 1.0)
-            if direction == "out":
+            if direction == "in":
                 factor = 1.0 - factor
             w = (image.width - output_width) * factor + output_width
             h = (image.height - output_height) * factor + output_height
             c = image.quad.center
-            return image.crop(c.x - w * 0.5, c.y - h * 0.5, c.x + w * 0.5, c.y + h * 0.5)
+            return image.crop(c.x - w * 0.5, c.y - h * 0.5, c.x + w * 0.5, c.y + h * 0.5).resize(output_width,
+                                                                                                 output_height,
+                                                                                                 Resampling.BICUBIC)
 
         return (FrameSet(proc.process(do_zoom), frames.framerate, frames.indices),)
 
@@ -80,7 +84,6 @@ class DVB_LinearCameraPan:
         gc_comfyui()
 
         input_width, input_height = frames.image_dimensions
-        print("Input size is {}x{}".format(input_width, input_height))
         if input_height < output_height or input_width < output_width:
             print("WARNING: Cannot pan - output larger than input!")
             return (frames,)
@@ -102,7 +105,7 @@ class DVB_LinearCameraPan:
         elif pan_mode == "edge to center":
             move_vector = move_vector.multiply(0.5)
             start_move = space.center.sub(move_vector)
-        elif pan_mode == "edge to edge":
+        else:
             start_move = space.center.sub(move_vector.multiply(0.5))
 
         start_quad = Quad2d(start_move.x - output_width * 0.5, start_move.y - output_height * 0.5,
@@ -114,9 +117,6 @@ class DVB_LinearCameraPan:
 
         def do_pan(n: int, total: int, image: DVB_Image, indices : List[int], first: int):
             subimage_quad = start_quad.add(move_delta_vector.multiply(indices[n]-first))
-            t = (round(subimage_quad.mincorner.x), round(subimage_quad.mincorner.y),
-                              round(subimage_quad.mincorner.x) + output_width,
-                              round(subimage_quad.mincorner.y) + output_height)
             return image.crop(round(subimage_quad.mincorner.x), round(subimage_quad.mincorner.y),
                               round(subimage_quad.mincorner.x) + output_width,
                               round(subimage_quad.mincorner.y) + output_height)

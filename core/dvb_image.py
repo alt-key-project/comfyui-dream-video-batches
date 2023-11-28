@@ -45,7 +45,10 @@ class DVB_Image:
                 t = img.tensor_image
             return t
         image_tensors = [_to_tensor(image) for image in images]
-        tensor = torch.from_numpy(numpy.array(image_tensors))
+
+        tensor = torch.stack(image_tensors)
+        #arr = numpy.array(image_tensors)
+        #tensor = torch.from_numpy(arr)
         assert len(tensor) == len(images)
         return tensor
 
@@ -81,7 +84,6 @@ class DVB_Image:
         return self._numpy
 
     @property
-    @cache
     def dimensions(self):
         if self._tensor_image is not None:
             s = self._tensor_image.shape

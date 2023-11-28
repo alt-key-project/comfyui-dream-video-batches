@@ -36,7 +36,9 @@ _NODE_CLASSES = [
     DVB_ForEachCheckpoint,
     DVB_Zoom,
     DVB_LoadImageFromPath,
-    DVB_Reverse
+    DVB_Reverse,
+    DVB_TraceMalloc
+
 ]
 
 _SIGNATURE_SUFFIX = " [DVB]"

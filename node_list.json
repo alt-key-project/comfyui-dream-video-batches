@@ -22,5 +22,6 @@
   "Multiply [DVB]": "Simple multiplication node",
   "String Input [DVB]": "User input node for string value",
   "Text Input [DVB]": "User input node for text value",
+  "Trace Memory Allocation [DVB]": "",
   "Unwrap Frame Set [DVB]": "Extracts contents of frame set (for use with other custom node packs)."
 }

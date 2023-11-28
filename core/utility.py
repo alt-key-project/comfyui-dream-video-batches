@@ -26,7 +26,6 @@ class ForEachState:
         all_files.update(files)
         for filename in all_files:
             if filename not in self._data:
-                print("for-each add {}".format(filename))
                 self._data[filename] = False
         with open(self._filepath, "w", encoding="utf8") as f:
             txt = json.dumps(self._data, indent=2)
