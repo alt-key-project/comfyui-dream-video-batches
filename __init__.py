@@ -43,7 +43,9 @@ _NODE_CLASSES = [
     DVB_LoadImageFromPath,
     DVB_Reverse,
     DVB_FrameSetRepeat,
-    DVB_FrameSetDimensionsScaled
+    DVB_FrameSetDimensionsScaled,
+    DVB_FrameSetSplitBeginning,
+    DVB_FrameSetSplitEnd
 ]
 
 

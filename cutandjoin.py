@@ -59,7 +59,7 @@ class DVB_FrameSetOffset:
 
 
 class DVB_ConcatFrameSets:
-    NODE_NAME = "Frame Set Concatenation"
+    NODE_NAME = "Frame Set Append"
     ICON = "🔗"
 
     @classmethod
@@ -227,3 +227,65 @@ class DVB_FrameSetRepeat:
             last_frame_index = result[-1].index
 
         return (FrameSet.from_indexed_images(result, frames.framerate),)
+
+class DVB_FrameSetSplitBeginning:
+    NODE_NAME = "Frame Set Split Beginning"
+    ICON = "✂"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "num_entries": ("INT", {"min": 1, "default": 1})
+            },
+        }
+
+    CATEGORY = NodeCategories.EDIT
+    RETURN_TYPES = (FrameSet.TYPE_NAME, FrameSet.TYPE_NAME )
+    RETURN_NAMES = ("beginning", "other")
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet, num_entries):
+        num_entries = min(len(frames), num_entries)
+        images = frames.indexed_images
+        a = images[0:num_entries]
+        b = images[num_entries:]
+
+        return FrameSet.from_indexed_images(a, frames.framerate), FrameSet.from_indexed_images(b, frames.framerate)
+
+
+class DVB_FrameSetSplitEnd:
+    NODE_NAME = "Frame Set Split End"
+    ICON = "✂"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "num_entries": ("INT", {"min": 1, "default": 1})
+            },
+        }
+
+    CATEGORY = NodeCategories.EDIT
+    RETURN_TYPES = (FrameSet.TYPE_NAME, FrameSet.TYPE_NAME)
+    RETURN_NAMES = ("beginning", "other")
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet, num_entries):
+        num_entries = min(len(frames), num_entries)
+        n = len(frames) - num_entries
+        images = frames.indexed_images
+        a = images[0:n]
+        b = images[n:]
+
+        return FrameSet.from_indexed_images(a, frames.framerate), FrameSet.from_indexed_images(b, frames.framerate)
