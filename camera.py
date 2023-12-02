@@ -8,6 +8,7 @@ from .categories import *
 from .core import *
 
 
+
 class BatchCameraMotion:
     def __init__(self, frames: FrameSet, output_width, output_height, motion_function, frame_function):
         assert isinstance(frames, FrameSet)
@@ -32,7 +33,6 @@ class BatchCameraMotion:
             else:
                 factor = float(index - self._first_index) / (self._last_index - self._first_index)
             factor = max(0.0, min(1.0, self._motion_function(factor)))
-
             return self._frame_function(image, factor, self._output_width, self._output_height)
 
         return (FrameSet(self._proc.process(do_recalc), self._frames.framerate, self._frames.indices),)
@@ -44,7 +44,7 @@ def zoom_frame(image: DVB_Image, f, o_width, o_height):
     c = image.quad.center
     return image.crop(c.x - w * 0.5, c.y - h * 0.5, c.x + w * 0.5, c.y + h * 0.5).resize(o_width,
                                                                                          o_height,
-                                                                                         Resampling.BICUBIC)
+                                                                                         Resampling.BILINEAR)
 
 
 def make_pan_function(direction_x: float, direction_y: float):
@@ -75,6 +75,9 @@ def make_pan_function(direction_x: float, direction_y: float):
 
     return _pan_func
 
+
+def _recalc_motion_factor_to_loopable(f, total_frames):
+    return f * (total_frames) / (total_frames + 1.0)
 
 class DVB_Zoom:
     NODE_NAME = "Linear Camera Zoom"
@@ -217,6 +220,7 @@ class DVB_ZoomSine:
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, period_seconds, phase_seconds):
         def motion(f):
+            f = _recalc_motion_factor_to_loopable(f, frames.indexed_length)
             length_in_seconds = frames.indexed_length / frames.framerate.as_float()
             t = length_in_seconds * f
             x = (t + phase_seconds) * math.pi * 2.0 / period_seconds
@@ -256,6 +260,7 @@ class DVB_SineCameraPan:
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction_x: float,
                direction_y: float, pan_mode: str, period_seconds, phase_seconds):
         def motion(f):
+            f = _recalc_motion_factor_to_loopable(f, frames.indexed_length)
             if pan_mode == "edge to center":
                 f = f * 0.5
             length_in_seconds = frames.indexed_length / frames.framerate.as_float()
@@ -296,6 +301,7 @@ class DVB_SineCameraRoll:
     def result(self, frames: FrameSet, output_width: int, output_height: int, degrees: float, period_seconds,
                phase_seconds):
         def motion(f):
+            f = _recalc_motion_factor_to_loopable(f, frames.indexed_length)
             length_in_seconds = frames.indexed_length / frames.framerate.as_float()
             t = length_in_seconds * f
             x = (t + phase_seconds) * math.pi * 2.0 / period_seconds
