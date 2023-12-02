@@ -98,6 +98,8 @@ class DVB_Image:
         top = min(y1,y2)
         return DVB_Image(pil_image=self.pil_image.crop((left, top, right, bottom)))
 
+    def rotate(self, degrees_cw):
+        return DVB_Image(pil_image=self.pil_image.rotate(degrees_cw, Resampling.BICUBIC))
 
     @property
     def width(self):

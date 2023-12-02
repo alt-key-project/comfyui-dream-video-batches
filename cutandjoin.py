@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from .core.frameset import IndexedImage
 
 from .categories import *
 from .core import *
@@ -192,3 +193,37 @@ class DVB_Reverse:
     def result(self, frames: FrameSet):
         return (FrameSet.from_images(list(reversed(frames.images)), frames.framerate, frames.indices),)
 
+class DVB_FrameSetRepeat:
+    NODE_NAME = "Frame Set Repeat"
+    ICON = "𝄈"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "repetitions": ("INT", {"default": 2, "min": 1}),
+                "step": ("INT", {"default": 1, "min": 1})
+            },
+        }
+
+    CATEGORY = NodeCategories.EDIT
+    RETURN_TYPES = (FrameSet.TYPE_NAME, )
+    RETURN_NAMES = ("frames", )
+    FUNCTION = "result"
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def result(self, frames: FrameSet, repetitions, step):
+        original_frames = frames.indexed_images
+        result = list()
+        last_frame_index = 0
+        for i in range(repetitions):
+            start_index = last_frame_index + step
+            for f in original_frames:
+                result.append(IndexedImage(f.image, start_index + f.index))
+            last_frame_index = result[-1].index
+
+        return (FrameSet.from_indexed_images(result, frames.framerate),)

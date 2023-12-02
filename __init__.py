@@ -13,6 +13,7 @@ from .core import DVB_Config
 import json, os
 
 _NODE_CLASSES = [
+    #DVB_TraceMalloc,
     DVB_FrameSetReindex,
     DVB_FrameSetOffset,
     DVB_Calculation,
@@ -31,21 +32,26 @@ _NODE_CLASSES = [
     DVB_FadeFromBlack,
     DVB_FadeToBlack,
     DVB_LinearCameraPan,
+    DVB_SineCameraPan,
+    DVB_Zoom,
+    DVB_ZoomSine,
+    DVB_LinearCameraRoll,
+    DVB_SineCameraRoll,
     DVB_InbetweenFrames,
     DVB_ForEachFilename,
     DVB_ForEachCheckpoint,
-    DVB_Zoom,
     DVB_LoadImageFromPath,
     DVB_Reverse,
-    DVB_TraceMalloc
-
+    DVB_FrameSetRepeat,
+    DVB_FrameSetDimensionsScaled
 ]
+
 
 _SIGNATURE_SUFFIX = " [DVB]"
 
 MANIFEST = {
     "name": "Dream Video Batches",
-    "version": (0, 6, 0),
+    "version": (1, 0, 0),
     "author": "Dream Project",
     "project": "https://github.com/alt-key-project/comfyui-dream-video-batches",
     "description": "Various utility nodes for working with video batches in ComfyUI",

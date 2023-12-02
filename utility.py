@@ -84,8 +84,8 @@ class DVB_ForEachFilename:
     NODE_NAME = "For Each Filename"
     ICON = "🗘"
     CATEGORY = NodeCategories.UTILS
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("filepath", "name")
+    RETURN_TYPES = ("STRING", "STRING", "FOREACH")
+    RETURN_NAMES = ("filepath", "name", "foreach")
     FUNCTION = "exec"
 
     @classmethod
@@ -119,11 +119,39 @@ class DVB_ForEachFilename:
             os.unlink(statefile)
             on_node_error(DVB_ForEachFilename, "No more files to process.")
         name, _ = os.path.splitext(os.path.basename(next_path))
-        return (next_path, name)
+        return (next_path, name, statefile)
+
+
+class DVB_FrameSetDimensionsScaled:
+    NODE_NAME = "Frame Set Frame Dimensions Scaled"
+    ICON = "⌗"
+    OUTPUT_NODE = False
+    CATEGORY = NodeCategories.UTILS
+    RETURN_TYPES = ("INT", "INT")
+    RETURN_NAMES = ("width", "height")
+    FUNCTION = "exec"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "frames": (FrameSet.TYPE_NAME,),
+                "factor": ("FLOAT", {"default": 1.0, "min": 0.01})
+            }
+        }
+
+    @classmethod
+    def IS_CHANGED(cls, *values):
+        return ALWAYS_CHANGED_FLAG
+
+    def exec(self, frames :FrameSet, factor : float):
+        d = frames.image_dimensions
+
+        return (round(d[0] * factor),round(d[1] * factor))
 
 
 class DVB_ForEachCheckpoint:
-    NODE_NAME = "For Each Checkpoint"
+    NODE_NAME = "For Each Done"
     ICON = "🗘"
     OUTPUT_NODE = True
     CATEGORY = NodeCategories.UTILS
@@ -135,9 +163,8 @@ class DVB_ForEachCheckpoint:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "id": (_ID_SELETIONS,),
                 "image": ("IMAGE",),
-                "directory": ("STRING", {"default": comfy_paths.input_directory}),
+                "foreach": ("FOREACH",),
             }
         }
 
@@ -145,12 +172,8 @@ class DVB_ForEachCheckpoint:
     def IS_CHANGED(cls, *values):
         return ALWAYS_CHANGED_FLAG
 
-    def exec(self, id: str, directory: str, **kwargs):
-        directory = directory.strip('"')
-        if not os.path.isdir(directory):
-            on_node_error(DVB_ForEachFilename, "Not a directory: {}".format(directory))
-
-        state = ForEachState(os.path.normpath(os.path.abspath(os.path.join(directory, "foreach_" + id + ".json"))))
+    def exec(self, image, foreach):
+        state = ForEachState(foreach)
         next_file = state.pop()
         state.mark_done(next_file)
         return tuple()
@@ -238,7 +261,7 @@ class DVB_TraceMalloc:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "string": ("STRING", {"default":""}),
+                "string": ("STRING", {"default": ""}),
             }
         }
 
@@ -262,7 +285,6 @@ class DVB_TraceMalloc:
             tracemalloc.start()
         else:
             print("!! TRACEMALLOC RUNNING")
-
 
         snapshot = tracemalloc.take_snapshot()
         top_stats = snapshot.statistics('lineno')
