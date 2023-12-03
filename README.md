@@ -56,7 +56,7 @@ the input (to allow for camera "movement").
 Fades from one frame set to another over a specified number of overlapping frames.
 
 ### Calculation [DVB]
-Maths node providing arithmetic operators and most common mathenatical functions (as defined in python math module).
+Maths node providing arithmetic operators and most common mathematical functions (as defined in Python math module).
 
 ### Create Frame Set [DVB]
 Creates a frame set from an image batch and a specified frame rate.
