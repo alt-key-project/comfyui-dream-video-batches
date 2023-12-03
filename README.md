@@ -140,7 +140,7 @@ Cropping utility to perform a camera pan within a frame set. Outputs a frame set
 ### Sine Camera Roll [DVB]
 Rolls the camera along z axis - sine oscillation.
 
-### Sine Camera Zoom [DVB]"
+### Sine Camera Zoom [DVB]
 Oscillating (sine wave) zoom through crop.
 
 ### String Input [DVB]
