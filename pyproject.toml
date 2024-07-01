@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-dream-video-batches"
+description = "Provide utilities for batch based video generation workflows (s.a. AnimateDiff and Stable Video Diffusion)."
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["imageio", "pilgram", "scipy", "numpy<1.24>=1.18", "torchvision", "evalidate"]
+
+[project.urls]
+Repository = "https://github.com/alt-key-project/comfyui-dream-video-batches"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "comfyui-dream-video-batches"
+Icon = ""
