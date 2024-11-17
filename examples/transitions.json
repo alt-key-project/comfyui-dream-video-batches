@@ -986,74 +986,6 @@
       ]
     },
     {
-      "id": 18,
-      "type": "Int Input [DVB]",
-      "pos": [
-        290,
-        -134
-      ],
-      "size": [
-        315,
-        58
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "INT",
-          "type": "INT",
-          "links": [
-            15,
-            16,
-            19
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Int Input [DVB]"
-      },
-      "widgets_values": [
-        512
-      ]
-    },
-    {
-      "id": 19,
-      "type": "Int Input [DVB]",
-      "pos": [
-        297,
-        2
-      ],
-      "size": [
-        315,
-        58
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "INT",
-          "type": "INT",
-          "links": [
-            17,
-            18,
-            20
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Int Input [DVB]"
-      },
-      "widgets_values": [
-        512
-      ]
-    },
-    {
       "id": 32,
       "type": "Unwrap Frame Set [DVB]",
       "pos": [
@@ -1290,29 +1222,6 @@
       }
     },
     {
-      "id": 35,
-      "type": "Note",
-      "pos": [
-        777,
-        -191
-      ],
-      "size": [
-        1539.7564697265625,
-        210.3737335205078
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "This example creates fade to black transitions between three different frame sets. This is a simple case where each frame set is simple an image repeated for a number of frames."
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
       "id": 26,
       "type": "Fade To Black [DVB]",
       "pos": [
@@ -1357,6 +1266,99 @@
       "widgets_values": [
         1
       ]
+    },
+    {
+      "id": 19,
+      "type": "Int Input [DVB]",
+      "pos": [
+        314,
+        16
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            17,
+            18,
+            20
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "✍ Height",
+      "properties": {
+        "Node name for S&R": "Int Input [DVB]"
+      },
+      "widgets_values": [
+        512
+      ]
+    },
+    {
+      "id": 18,
+      "type": "Int Input [DVB]",
+      "pos": [
+        321,
+        -113
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            15,
+            16,
+            19
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "✍ Width",
+      "properties": {
+        "Node name for S&R": "Int Input [DVB]"
+      },
+      "widgets_values": [
+        512
+      ]
+    },
+    {
+      "id": 35,
+      "type": "Note",
+      "pos": [
+        770,
+        -146
+      ],
+      "size": [
+        1539.7564697265625,
+        210.3737335205078
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "This example creates fade to black transitions between three different frame sets. This is a simple case where each frame set is simply an image repeated for a number of frames."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -1669,10 +1671,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.289664379736688,
+      "scale": 0.4240976183724855,
       "offset": [
-        938.1133861396434,
-        -75.14870295134074
+        812.8941570571178,
+        761.7121354754975
       ]
     }
   },
