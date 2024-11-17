@@ -1,0 +1,500 @@
+{
+  "last_node_id": 13,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 8,
+      "type": "Unwrap Frame Set [DVB]",
+      "pos": [
+        1243,
+        697
+      ],
+      "size": [
+        315,
+        198
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "frames",
+          "type": "FRAME_SET",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "framerate_float",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "framerate_rounded",
+          "type": "INT",
+          "links": [
+            10
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "framerate_base",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "framerate_divisor",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "first_index",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "indexed_length",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Unwrap Frame Set [DVB]"
+      },
+      "widgets_values": [
+        "BLEND"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1622,
+        688
+      ],
+      "size": [
+        315,
+        535
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        },
+        {
+          "name": "frame_rate",
+          "type": "INT",
+          "link": 10,
+          "widget": {
+            "name": "frame_rate"
+          }
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 8,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h265-mp4",
+        "pingpong": false,
+        "save_image": true,
+        "crf": 20,
+        "save_metadata": true,
+        "audio_file": "",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00004.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h265-mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "Generate Inbetween Frames [DVB]",
+      "pos": [
+        856,
+        697
+      ],
+      "size": [
+        352.79998779296875,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "frames",
+          "type": "FRAME_SET",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "frames",
+          "type": "FRAME_SET",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Generate Inbetween Frames [DVB]"
+      },
+      "widgets_values": [
+        "BLEND"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "Create Frame Set [DVB]",
+      "pos": [
+        499,
+        698
+      ],
+      "size": [
+        315,
+        130
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        },
+        {
+          "name": "framerate_base",
+          "type": "INT",
+          "link": 12,
+          "widget": {
+            "name": "framerate_base"
+          }
+        },
+        {
+          "name": "step",
+          "type": "INT",
+          "link": 14,
+          "widget": {
+            "name": "step"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "frames",
+          "type": "FRAME_SET",
+          "links": [
+            15
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Create Frame Set [DVB]"
+      },
+      "widgets_values": [
+        0,
+        1,
+        24,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "type": "ImageBatch",
+      "pos": [
+        226,
+        705
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        -158,
+        691
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "b.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "Int Input [DVB]",
+      "pos": [
+        -146,
+        1073
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "title": "✍ Framerate",
+      "properties": {
+        "Node name for S&R": "Int Input [DVB]"
+      },
+      "widgets_values": [
+        8
+      ]
+    },
+    {
+      "id": 12,
+      "type": "Int Input [DVB]",
+      "pos": [
+        -155,
+        1202
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            14
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "✍ Total frames",
+      "properties": {
+        "Node name for S&R": "Int Input [DVB]"
+      },
+      "widgets_values": [
+        80
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        -167,
+        310
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "a.jpg",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      3,
+      3,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      2,
+      0,
+      6,
+      1,
+      "IMAGE"
+    ],
+    [
+      5,
+      6,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      8,
+      5,
+      0,
+      8,
+      0,
+      "FRAME_SET"
+    ],
+    [
+      9,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      10,
+      8,
+      2,
+      9,
+      1,
+      "INT"
+    ],
+    [
+      12,
+      11,
+      0,
+      4,
+      1,
+      "INT"
+    ],
+    [
+      14,
+      12,
+      0,
+      4,
+      2,
+      "INT"
+    ],
+    [
+      15,
+      4,
+      0,
+      5,
+      0,
+      "FRAME_SET"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6209213230591556,
+      "offset": [
+        599.5462387889024,
+        146.43580096031252
+      ]
+    }
+  },
+  "version": 0.4
+}
