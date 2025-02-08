@@ -27,7 +27,7 @@ class DVB_LoadImageFromPath:
         return ALWAYS_CHANGED_FLAG
 
     def result(self, image_path, **other):
-        return (DVB_Image.join_to_tensor_data([DVB_Image(file_path=image_path)]),)
+        return (DVB_Image.join_to_tensor_data([DVB_Image(file_path=image_path, with_alpha=True)]),)
 
 
 class DreamRandomBatchLoader:
