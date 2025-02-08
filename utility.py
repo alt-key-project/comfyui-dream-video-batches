@@ -107,11 +107,13 @@ class DVB_ForEachFilename:
         if not os.path.isdir(directory):
             on_node_error(DVB_ForEachFilename, "Not a directory: {}".format(directory))
 
+        foreach_filename = "foreach_" + id + ".json"
+
         statefile = os.path.normpath(os.path.abspath(os.path.join(directory, "foreach_" + id + ".json")))
         search_path = os.path.normpath(os.path.abspath(directory))
         state = ForEachState(statefile)
 
-        files = list(glob.glob(os.path.join(search_path, pattern), recursive=False))
+        files = list(filter(lambda f: f != foreach_filename, glob.glob(os.path.join(search_path, pattern), recursive=False)))
         state.add_files_to_process(files)
 
         next_path = state.pop()
