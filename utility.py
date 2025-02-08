@@ -109,11 +109,11 @@ class DVB_ForEachFilename:
 
         foreach_filename = "foreach_" + id + ".json"
 
-        statefile = os.path.normpath(os.path.abspath(os.path.join(directory, "foreach_" + id + ".json")))
+        statefile = os.path.normpath(os.path.abspath(os.path.join(directory, foreach_filename)))
         search_path = os.path.normpath(os.path.abspath(directory))
         state = ForEachState(statefile)
 
-        files = list(filter(lambda f: f != foreach_filename, glob.glob(os.path.join(search_path, pattern), recursive=False)))
+        files = list(filter(lambda f: not f.endswith(foreach_filename), glob.glob(os.path.join(search_path, pattern), recursive=False)))
         state.add_files_to_process(files)
 
         next_path = state.pop()
