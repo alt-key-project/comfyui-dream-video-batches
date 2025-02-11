@@ -30,8 +30,8 @@ class RandomPromptScheduleGenerator:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
-        return hashed_as_strings(*values)
+    def IS_CHANGED(cls, *values, **kwargs):
+        return hashed_as_strings(*values, **kwargs)
 
     def result(self, partial_prompt: PartialPrompt, fixed_partial_prompt, total_frames, prompt_interval, seed,
                num_positive, num_negative, adjustment, adjustment_reference, clamp):
@@ -84,8 +84,8 @@ class DreamWeightedPromptBuilder:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
-        return hashed_as_strings(*values)
+    def IS_CHANGED(cls, *values, **kwargs):
+        return hashed_as_strings(*values, **kwargs)
 
     def result(self, added_prompt, weight, **args):
         input = args.get("partial_prompt", PartialPrompt())
@@ -114,8 +114,8 @@ class DreamPromptFinalizer:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
-        return hashed_as_strings(*values)
+    def IS_CHANGED(cls, *values, **kwargs):
+        return hashed_as_strings(*values, **kwargs)
 
     def result(self, partial_prompt: PartialPrompt, adjustment, adjustment_reference, clamp):
         if adjustment == "raw" or partial_prompt.is_empty():

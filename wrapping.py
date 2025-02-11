@@ -24,7 +24,7 @@ class DVB_ImagesToFrameSet:
     FUNCTION = "work"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def work(self, images, first_frame_index, step, framerate_base, framerate_divisor):
@@ -55,7 +55,7 @@ class DVB_UnwrapFrameSet:
     FUNCTION = "work"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def work(self, frames: FrameSet, gap_mode: str):

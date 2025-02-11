@@ -89,7 +89,7 @@ class DVB_ForEachFilename:
     FUNCTION = "exec"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     @classmethod
@@ -143,7 +143,7 @@ class DVB_FrameSetDimensionsScaled:
         }
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def exec(self, frames :FrameSet, factor : float):
@@ -171,7 +171,7 @@ class DVB_ForEachCheckpoint:
         }
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def exec(self, image, foreach):
@@ -240,8 +240,8 @@ class DVB_FrameDimensions:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
-        return hashed_as_strings(*values)
+    def IS_CHANGED(cls, *values, **kwargs):
+        return hashed_as_strings(*values, **kwargs)
 
     def result(self, size, aspect_ratio, orientation, divisor, alignment, alignment_type):
         ratio = tuple(map(int, aspect_ratio.split(":")))
@@ -273,7 +273,7 @@ class DVB_TraceMalloc:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, string):

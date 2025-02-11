@@ -25,7 +25,7 @@ class DVB_FrameSetReindex:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, start, step):
@@ -51,7 +51,7 @@ class DVB_FrameSetOffset:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, offset):
@@ -79,7 +79,7 @@ class DVB_ConcatFrameSets:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, a: FrameSet, b: FrameSet, offset_from_end, step):
@@ -113,7 +113,7 @@ class DVB_MergeFrames:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, a: FrameSet, b: FrameSet, priority: str):
@@ -147,7 +147,7 @@ class DVB_Splitter:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, overlap: int):
@@ -187,7 +187,7 @@ class DVB_Reverse:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet):
@@ -213,7 +213,7 @@ class DVB_FrameSetRepeat:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, repetitions, step):
@@ -247,7 +247,7 @@ class DVB_FrameSetSplitBeginning:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, num_entries):
@@ -278,7 +278,7 @@ class DVB_FrameSetSplitEnd:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, num_entries):

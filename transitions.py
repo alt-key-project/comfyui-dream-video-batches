@@ -53,7 +53,7 @@ class DVB_FadeToBlack:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, fade_seconds: float):
@@ -84,7 +84,7 @@ class DVB_FadeFromBlack:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, fade_seconds: float):
@@ -116,7 +116,7 @@ class DVB_BlendedTransition:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames_first: FrameSet, frames_after: FrameSet, fade_seconds):

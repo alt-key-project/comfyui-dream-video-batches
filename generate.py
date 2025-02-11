@@ -21,7 +21,7 @@ class DVB_InbetweenFrames:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, fill_mode):

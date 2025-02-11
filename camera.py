@@ -100,7 +100,7 @@ class DVB_Zoom:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction):
@@ -136,7 +136,7 @@ class DVB_LinearCameraPan:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction_x: float,
@@ -174,7 +174,7 @@ class DVB_LinearCameraRoll:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, degrees: float):
@@ -215,7 +215,7 @@ class DVB_ZoomSine:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, period_seconds, phase_seconds):
@@ -254,7 +254,7 @@ class DVB_SineCameraPan:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction_x: float,
@@ -295,7 +295,7 @@ class DVB_SineCameraRoll:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, degrees: float, period_seconds,

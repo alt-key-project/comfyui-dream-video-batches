@@ -23,7 +23,7 @@ class DVB_LoadImageFromPath:
         }
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, image_path, **other):
@@ -55,7 +55,7 @@ class DreamRandomBatchLoader:
         }
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, directory_path, pattern, load_count, seed, mode, **other):
@@ -102,7 +102,7 @@ class DreamImageBatchLoader:
         }
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, directory_path, pattern, indexing, max_loaded, mode, **other):
@@ -150,7 +150,7 @@ class DreamImageSequenceInputWithDefaultFallback:
     FUNCTION = "result"
 
     @classmethod
-    def IS_CHANGED(cls, *values):
+    def IS_CHANGED(cls, *values, **kwargs):
         return ALWAYS_CHANGED_FLAG
 
     def result(self, frame_counter, directory_path, pattern, indexing, **other):
