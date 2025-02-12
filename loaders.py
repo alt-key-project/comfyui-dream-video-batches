@@ -24,7 +24,7 @@ class DVB_LoadImageFromPath:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, image_path, **other):
         return (DVB_Image.join_to_tensor_data([DVB_Image(file_path=image_path, with_alpha=True)]),)
@@ -56,7 +56,7 @@ class DreamRandomBatchLoader:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, directory_path, pattern, load_count, seed, mode, **other):
         entries = list_images_in_directory(directory_path, pattern, True)
@@ -103,7 +103,7 @@ class DreamImageBatchLoader:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, directory_path, pattern, indexing, max_loaded, mode, **other):
         entries = list_images_in_directory(directory_path, pattern, indexing == "alphabetic order")
@@ -151,7 +151,7 @@ class DreamImageSequenceInputWithDefaultFallback:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frame_counter, directory_path, pattern, indexing, **other):
         default_image = other.get("default_image", None)

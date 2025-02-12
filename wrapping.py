@@ -25,7 +25,7 @@ class DVB_ImagesToFrameSet:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def work(self, images, first_frame_index, step, framerate_base, framerate_divisor):
         fps = FrameRate(framerate_base, framerate_divisor)
@@ -56,7 +56,7 @@ class DVB_UnwrapFrameSet:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def work(self, frames: FrameSet, gap_mode: str):
         images = frames.images

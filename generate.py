@@ -22,7 +22,7 @@ class DVB_InbetweenFrames:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, fill_mode):
         assert isinstance(frames, FrameSet)

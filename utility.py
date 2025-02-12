@@ -90,7 +90,7 @@ class DVB_ForEachFilename:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -144,7 +144,7 @@ class DVB_FrameSetDimensionsScaled:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def exec(self, frames :FrameSet, factor : float):
         d = frames.image_dimensions
@@ -172,7 +172,7 @@ class DVB_ForEachCheckpoint:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def exec(self, image, foreach):
         state = ForEachState(foreach)
@@ -274,7 +274,7 @@ class DVB_TraceMalloc:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, string):
         import tracemalloc, gc

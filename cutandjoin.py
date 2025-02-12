@@ -26,7 +26,7 @@ class DVB_FrameSetReindex:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, start, step):
         return (frames.reindexed(start, step),)
@@ -52,7 +52,7 @@ class DVB_FrameSetOffset:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, offset):
         return (frames.reindexed(frames.first_index + offset),)
@@ -80,7 +80,7 @@ class DVB_ConcatFrameSets:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, a: FrameSet, b: FrameSet, offset_from_end, step):
         first_index = a.last_index + step + offset_from_end
@@ -114,7 +114,7 @@ class DVB_MergeFrames:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, a: FrameSet, b: FrameSet, priority: str):
         if priority == "use_b_when_possible":
@@ -148,7 +148,7 @@ class DVB_Splitter:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, overlap: int):
         images = frames.indexed_images
@@ -188,7 +188,7 @@ class DVB_Reverse:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet):
         return (FrameSet.from_images(list(reversed(frames.images)), frames.framerate, frames.indices),)
@@ -214,7 +214,7 @@ class DVB_FrameSetRepeat:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, repetitions, step):
         original_frames = frames.indexed_images
@@ -248,7 +248,7 @@ class DVB_FrameSetSplitBeginning:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, num_entries):
         num_entries = min(len(frames), num_entries)
@@ -279,7 +279,7 @@ class DVB_FrameSetSplitEnd:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, num_entries):
         num_entries = min(len(frames), num_entries)

@@ -54,7 +54,7 @@ class DVB_FadeToBlack:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, fade_seconds: float):
         assert isinstance(frames, FrameSet)
@@ -85,7 +85,7 @@ class DVB_FadeFromBlack:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames: FrameSet, fade_seconds: float):
         assert isinstance(frames, FrameSet)
@@ -117,7 +117,7 @@ class DVB_BlendedTransition:
 
     @classmethod
     def IS_CHANGED(cls, *values, **kwargs):
-        return ALWAYS_CHANGED_FLAG
+        return float("NaN")
 
     def result(self, frames_first: FrameSet, frames_after: FrameSet, fade_seconds):
         assert isinstance(frames_first, FrameSet)

@@ -53,7 +53,7 @@ _SIGNATURE_SUFFIX = " [DVB]"
 
 MANIFEST = {
     "name": "Dream Video Batches",
-    "version": (1, 0, 8),
+    "version": (1, 0, 9),
     "author": "Dream Project",
     "project": "https://github.com/alt-key-project/comfyui-dream-video-batches",
     "description": "Various utility nodes for working with video batches in ComfyUI",
