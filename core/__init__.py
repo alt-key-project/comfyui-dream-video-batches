@@ -1,6 +1,5 @@
 from .batch_processing import DVB_ImageBatchProcessor
 from .dvb_image import DVB_Image
-from .node_support import float("NaN")
 from .frameset import FrameSet
 from .framerate import FrameRate
 from .config import DVB_Config
