@@ -99,10 +99,6 @@ class DVB_Zoom:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction):
         def motion(f):
             if direction == "in":
@@ -134,10 +130,6 @@ class DVB_LinearCameraPan:
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction_x: float,
                direction_y: float, pan_mode: str):
@@ -173,9 +165,6 @@ class DVB_LinearCameraRoll:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, degrees: float):
         def motion(f):
@@ -214,10 +203,6 @@ class DVB_ZoomSine:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet, output_width: int, output_height: int, period_seconds, phase_seconds):
         def motion(f):
             f = _recalc_motion_factor_to_loopable(f, frames.indexed_length)
@@ -253,9 +238,6 @@ class DVB_SineCameraPan:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, direction_x: float,
                direction_y: float, pan_mode: str, period_seconds, phase_seconds):
@@ -293,10 +275,6 @@ class DVB_SineCameraRoll:
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, output_width: int, output_height: int, degrees: float, period_seconds,
                phase_seconds):

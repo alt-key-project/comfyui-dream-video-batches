@@ -23,10 +23,6 @@ class DVB_ImagesToFrameSet:
     RETURN_NAMES = ("frames",)
     FUNCTION = "work"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def work(self, images, first_frame_index, step, framerate_base, framerate_divisor):
         fps = FrameRate(framerate_base, framerate_divisor)
         indices = []
@@ -53,10 +49,6 @@ class DVB_UnwrapFrameSet:
     RETURN_NAMES = ("images", "framerate_float", "framerate_rounded", "framerate_base", "framerate_divisor",
                     "first_index", "indexed_length", "frame_count")
     FUNCTION = "work"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def work(self, frames: FrameSet, gap_mode: str):
         images = frames.images

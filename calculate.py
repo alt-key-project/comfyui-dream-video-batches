@@ -25,10 +25,6 @@ class DVB_Multiply:
             }
         }
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
-
     def result(self, multiple, **kwargs):
         f = kwargs.get("float", 0.0)
         i = kwargs.get("int", 0)
@@ -53,10 +49,6 @@ class DVB_Divide:
                 "int": ("INT", {"default": 0})
             }
         }
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
 
     def result(self, divisor, **kwargs):
         f = kwargs.get("float", 0.0)
@@ -88,10 +80,6 @@ class DVB_Calculation:
                 "t_float": ("FLOAT", {"default": 0.0, "multiline": False})
             }
         }
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
 
     def _make_model(self):
         funcs = self._make_functions()

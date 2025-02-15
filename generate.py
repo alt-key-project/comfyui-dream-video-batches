@@ -20,10 +20,6 @@ class DVB_InbetweenFrames:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet, fill_mode):
         assert isinstance(frames, FrameSet)
         gc_comfyui()

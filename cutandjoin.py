@@ -24,10 +24,6 @@ class DVB_FrameSetReindex:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet, start, step):
         return (frames.reindexed(start, step),)
 
@@ -49,10 +45,6 @@ class DVB_FrameSetOffset:
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, offset):
         return (frames.reindexed(frames.first_index + offset),)
@@ -77,10 +69,6 @@ class DVB_ConcatFrameSets:
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, a: FrameSet, b: FrameSet, offset_from_end, step):
         first_index = a.last_index + step + offset_from_end
@@ -112,10 +100,6 @@ class DVB_MergeFrames:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, a: FrameSet, b: FrameSet, priority: str):
         if priority == "use_b_when_possible":
             t = a
@@ -145,10 +129,6 @@ class DVB_Splitter:
     RETURN_TYPES = (FrameSet.TYPE_NAME, FrameSet.TYPE_NAME)
     RETURN_NAMES = ("first_half", "second_half")
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, overlap: int):
         images = frames.indexed_images
@@ -186,10 +166,6 @@ class DVB_Reverse:
     RETURN_NAMES = ("frames", )
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet):
         return (FrameSet.from_images(list(reversed(frames.images)), frames.framerate, frames.indices),)
 
@@ -211,10 +187,6 @@ class DVB_FrameSetRepeat:
     RETURN_TYPES = (FrameSet.TYPE_NAME, )
     RETURN_NAMES = ("frames", )
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, repetitions, step):
         original_frames = frames.indexed_images
@@ -246,10 +218,6 @@ class DVB_FrameSetSplitBeginning:
     RETURN_NAMES = ("beginning", "other")
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet, num_entries):
         num_entries = min(len(frames), num_entries)
         images = frames.indexed_images
@@ -276,10 +244,6 @@ class DVB_FrameSetSplitEnd:
     RETURN_TYPES = (FrameSet.TYPE_NAME, FrameSet.TYPE_NAME)
     RETURN_NAMES = ("beginning", "other")
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, num_entries):
         num_entries = min(len(frames), num_entries)

@@ -18,10 +18,6 @@ class DVB_InputText:
     RETURN_NAMES = ("STRING",)
     FUNCTION = "noop"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
-
     def noop(self, value):
         return (value,)
 
@@ -42,10 +38,6 @@ class DVB_InputString:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("STRING",)
     FUNCTION = "noop"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
 
     def noop(self, value):
         return (value,)
@@ -68,10 +60,6 @@ class DVB_InputFloat:
     RETURN_NAMES = ("FLOAT",)
     FUNCTION = "noop"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
-
     def noop(self, value):
         return (value,)
 
@@ -92,10 +80,6 @@ class DVB_InputInt:
     RETURN_TYPES = ("INT",)
     RETURN_NAMES = ("INT",)
     FUNCTION = "noop"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
 
     def noop(self, value):
         return (value,)

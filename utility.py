@@ -142,10 +142,6 @@ class DVB_FrameSetDimensionsScaled:
             }
         }
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def exec(self, frames :FrameSet, factor : float):
         d = frames.image_dimensions
 
@@ -169,10 +165,6 @@ class DVB_ForEachCheckpoint:
                 "foreach": ("FOREACH",),
             }
         }
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def exec(self, image, foreach):
         state = ForEachState(foreach)
@@ -238,10 +230,6 @@ class DVB_FrameDimensions:
     RETURN_TYPES = ("INT", "INT", "INT", "INT")
     RETURN_NAMES = ("width", "height", "final_width", "final_height")
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return hashed_as_strings(*values, **kwargs)
 
     def result(self, size, aspect_ratio, orientation, divisor, alignment, alignment_type):
         ratio = tuple(map(int, aspect_ratio.split(":")))

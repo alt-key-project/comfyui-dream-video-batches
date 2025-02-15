@@ -52,10 +52,6 @@ class DVB_FadeToBlack:
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
 
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
-
     def result(self, frames: FrameSet, fade_seconds: float):
         assert isinstance(frames, FrameSet)
         gc_comfyui()
@@ -82,10 +78,6 @@ class DVB_FadeFromBlack:
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames: FrameSet, fade_seconds: float):
         assert isinstance(frames, FrameSet)
@@ -114,10 +106,6 @@ class DVB_BlendedTransition:
     RETURN_TYPES = (FrameSet.TYPE_NAME,)
     RETURN_NAMES = ("frames",)
     FUNCTION = "result"
-
-    @classmethod
-    def IS_CHANGED(cls, *values, **kwargs):
-        return float("NaN")
 
     def result(self, frames_first: FrameSet, frames_after: FrameSet, fade_seconds):
         assert isinstance(frames_first, FrameSet)
