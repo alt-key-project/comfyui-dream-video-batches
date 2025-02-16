@@ -4,7 +4,6 @@ from functools import cache
 import numpy
 import torch
 from PIL import Image, ImageFilter, ImageEnhance
-from PIL.Image import Resampling
 from PIL.ImageDraw import ImageDraw
 from torch import Tensor
 from .vector import *
@@ -99,7 +98,7 @@ class DVB_Image:
         return DVB_Image(pil_image=self.pil_image.crop((left, top, right, bottom)))
 
     def rotate(self, degrees_cw):
-        return DVB_Image(pil_image=self.pil_image.rotate(degrees_cw, Resampling.BILINEAR))
+        return DVB_Image(pil_image=self.pil_image.rotate(degrees_cw))
 
     @property
     def width(self):
@@ -162,13 +161,13 @@ class DVB_Image:
     def from_file(cls, file_path):
         return DVB_Image(pil_image=Image.open(file_path))
 
-    def resize(self, resize_width=0, resize_height=0, resampling=Resampling.NEAREST):
+    def resize(self, resize_width=0, resize_height=0):
         if resize_width > 0 or resize_height > 0:
             ratio = self.width / self.height
             if resize_height <= 0:
                 resize_height = round(resize_width / ratio)
             elif resize_width <= 0:
                 resize_width = round(resize_height * ratio)
-            return DVB_Image(pil_image=self.pil_image.resize((resize_width, resize_height), resampling))
+            return DVB_Image(pil_image=self.pil_image.resize((resize_width, resize_height)))
         else:
             return self
