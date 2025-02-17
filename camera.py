@@ -2,8 +2,6 @@
 
 import math
 
-from PIL.Image import Resampling
-
 from .categories import *
 from .core import *
 
@@ -43,8 +41,7 @@ def zoom_frame(image: DVB_Image, f, o_width, o_height):
     h = (image.height - o_height) * f + o_height
     c = image.quad.center
     return image.crop(c.x - w * 0.5, c.y - h * 0.5, c.x + w * 0.5, c.y + h * 0.5).resize(o_width,
-                                                                                         o_height,
-                                                                                         Resampling.BILINEAR)
+                                                                                         o_height)
 
 
 def make_pan_function(direction_x: float, direction_y: float):
