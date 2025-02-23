@@ -25,9 +25,5 @@
       "transitions": "\ud83c\udfac",
       "io": "\ud83d\udcbe"
     }
-  },
-  "paths": {
-    "default_input": "I:\\AI\\ComfyUI\\ComfyUI\\input",
-    "default_output": "I:\\AI\\ComfyUI\\ComfyUI\\output"
   }
 }
