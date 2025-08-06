@@ -7,6 +7,7 @@ import glob
 
 from .categories import NodeCategories
 from .core import *
+from pathlib import Path
 
 
 class DVB_IntToString:
@@ -104,12 +105,12 @@ class DVB_ForEachFilename:
 
     def exec(self, id: str, directory: str, pattern: str):
         directory = directory.strip('"')
-        if not os.path.isdir(directory):
-            on_node_error(DVB_ForEachFilename, "Not a directory: {}".format(directory))
-
+        p = Path(directory)
+        parts = p.parts
+        idx = next((i for i, part in enumerate(parts) if any(ch in part for ch in "*?[]")), len(parts))
+        base2 = Path(*parts[:idx])
         foreach_filename = "foreach_" + id + ".json"
-
-        statefile = os.path.normpath(os.path.abspath(os.path.join(directory, foreach_filename)))
+        statefile = os.path.normpath(os.path.abspath(os.path.join(base2, foreach_filename)))
         search_path = os.path.normpath(os.path.abspath(directory))
         state = ForEachState(statefile)
 
