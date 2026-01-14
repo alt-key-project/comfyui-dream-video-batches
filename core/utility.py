@@ -24,7 +24,6 @@ class ForEachState:
             self._data = dict()
 
     def add_files_to_process(self, files):
-        files = list(map(lambda f: os.path.basename(f), files))
         all_files = set(self._data.keys())
         all_files.update(files)
         for filename in all_files:
@@ -35,7 +34,6 @@ class ForEachState:
             f.write(txt)
 
     def mark_done(self, filename):
-        filename = os.path.basename(filename)
         self._data[filename] = True
         with open(self._filepath, "w", encoding="utf8") as f:
             txt = json.dumps(self._data, indent=2)
