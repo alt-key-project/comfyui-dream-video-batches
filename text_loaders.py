@@ -25,7 +25,7 @@ class DVB_LoadTextFromPath:
 
     @classmethod
     def IS_CHANGED(cls, text_path, encoding, **kwargs):
-        if not text_path or not os.path.isfile(text_path):
+        if not text_path or not os.path.exists(text_path) or os.path.isdir(text_path):
             return ""
         m = hashlib.sha256()
         with open(text_path, "rb") as f:
@@ -35,7 +35,9 @@ class DVB_LoadTextFromPath:
     def result(self, text_path, encoding, **other):
         if not text_path:
             return ("",)
-        if not os.path.isfile(text_path):
-            on_node_error(DVB_LoadTextFromPath, "File not found: " + text_path)
+        if not os.path.exists(text_path):
+            on_node_error(DVB_LoadTextFromPath, "Path does not exist: " + text_path)
+        if os.path.isdir(text_path):
+            on_node_error(DVB_LoadTextFromPath, "Path is a directory, not a file: " + text_path)
         with open(text_path, "r", encoding=encoding) as f:
             return (f.read(),)
