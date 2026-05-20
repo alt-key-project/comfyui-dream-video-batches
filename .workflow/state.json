@@ -4,7 +4,16 @@
   "status": "idle",
   "current_milestone": null,
   "current_task_id": null,
-  "milestones": [],
+  "milestones": [
+    {
+      "id": "M-001",
+      "name": "Load Text From Path",
+      "phase": "01-load-text-from-path",
+      "status": "not_started",
+      "requirements": ["REQ-001"],
+      "created": "2026-05-21"
+    }
+  ],
   "artifacts": [
     {
       "type": "brainstorm",
@@ -14,7 +23,7 @@
       "features": ["F-001-load-text-from-path"]
     }
   ],
-  "last_updated": "2026-05-20T00:00:00Z",
+  "last_updated": "2026-05-21T00:00:00Z",
   "last_codebase_rebuild": "2026-05-20T00:00:00Z",
   "accumulated_context": {
     "key_decisions": [],
