@@ -9,6 +9,7 @@ from .generate import *
 from .camera import *
 from .loaders import *
 from .wrapping import *
+from .text_loaders import *
 from .core import DVB_Config
 import json, os
 
@@ -45,7 +46,8 @@ _NODE_CLASSES = [
     DVB_FrameSetRepeat,
     DVB_FrameSetDimensionsScaled,
     DVB_FrameSetSplitBeginning,
-    DVB_FrameSetSplitEnd
+    DVB_FrameSetSplitEnd,
+    DVB_LoadTextFromPath,
 ]
 
 
