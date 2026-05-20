@@ -24,6 +24,7 @@
   "Linear Camera Roll [DVB]": "Rolls the camera along z axis",
   "Linear Camera Zoom [DVB]": "Oscillating (sine wave) zoom through crop",
   "Load Image From Path [DVB]": "Loads a single image file from a path",
+  "Load Text From Path [DVB]": "",
   "Multiply [DVB]": "Simple multiplication node",
   "Sine Camera Pan [DVB]": "Cropping utility to perform a camera pan within a frame set. Outputs a frame set of smaller frame size. Sine oscillation.",
   "Sine Camera Roll [DVB]": "Rolls the camera along z axis - sine oscillation",
