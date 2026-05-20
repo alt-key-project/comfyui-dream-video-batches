@@ -1,0 +1,19 @@
+{
+  "session": "brainstorm-batch-txt-images-20260520",
+  "created": "2026-05-20",
+  "features": [
+    {
+      "id": "F-001",
+      "slug": "load-text-from-path",
+      "name": "Load Text From Path",
+      "description": "从文件路径加载文本文件内容并输出为 STRING，配合 ForEachFilename 实现批量文本迭代处理",
+      "priority": "MUST",
+      "status": "specified",
+      "spec_path": "feature-specs/F-001-load-text-from-path.md",
+      "related_roles": ["system-architect", "data-architect", "ux-expert", "test-strategist"],
+      "estimated_complexity": "low"
+    }
+  ],
+  "total_features": 1,
+  "enhancements_applied": ["EP-001-simplify-to-text-from-path"]
+}

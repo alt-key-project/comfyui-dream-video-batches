@@ -1,0 +1,26 @@
+{
+  "version": "2.0",
+  "project_name": "comfyui-dream-video-batches",
+  "status": "idle",
+  "current_milestone": null,
+  "current_task_id": null,
+  "milestones": [],
+  "artifacts": [
+    {
+      "type": "brainstorm",
+      "session": "brainstorm-batch-txt-images-20260520",
+      "path": ".workflow/scratch/brainstorm-batch-txt-images-20260520/",
+      "created": "2026-05-20",
+      "features": ["F-001-load-text-from-path"]
+    }
+  ],
+  "last_updated": "2026-05-20T00:00:00Z",
+  "last_codebase_rebuild": "2026-05-20T00:00:00Z",
+  "accumulated_context": {
+    "key_decisions": [],
+    "blockers": [],
+    "deferred": []
+  },
+  "transition_history": [],
+  "milestone_history": []
+}

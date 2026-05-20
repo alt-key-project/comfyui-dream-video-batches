@@ -1,0 +1,309 @@
+{
+  "version": "1.0",
+  "schema_version": "1.0",
+  "project": "comfyui-dream-video-batches",
+  "last_updated": "2026-05-20T00:00:00Z",
+  "components": [
+    {
+      "id": "TC-001",
+      "name": "FrameSet",
+      "type": "core",
+      "code_locations": ["core/frameset.py"],
+      "feature_ids": ["FT-001", "FT-002"],
+      "symbols": ["FrameSet", "IndexedImage"]
+    },
+    {
+      "id": "TC-002",
+      "name": "DVB_Image",
+      "type": "core",
+      "code_locations": ["core/dvb_image.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["DVB_Image"]
+    },
+    {
+      "id": "TC-003",
+      "name": "FrameRate",
+      "type": "core",
+      "code_locations": ["core/framerate.py"],
+      "feature_ids": ["FT-001"],
+      "symbols": ["FrameRate"]
+    },
+    {
+      "id": "TC-004",
+      "name": "DVB_Config",
+      "type": "config",
+      "code_locations": ["core/config.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["DVB_Config"]
+    },
+    {
+      "id": "TC-005",
+      "name": "DVB_ImageBatchProcessor",
+      "type": "core",
+      "code_locations": ["core/batch_processing.py"],
+      "feature_ids": ["FT-003", "FT-004"],
+      "symbols": ["DVB_ImageBatchProcessor"]
+    },
+    {
+      "id": "TC-006",
+      "name": "Vector2d & Quad2d",
+      "type": "core",
+      "code_locations": ["core/vector.py"],
+      "feature_ids": ["FT-003"],
+      "symbols": ["Vector2d", "Quad2d"]
+    },
+    {
+      "id": "TC-007",
+      "name": "PartialPrompt",
+      "type": "core",
+      "code_locations": ["core/partial_prompt.py"],
+      "feature_ids": ["FT-007"],
+      "symbols": ["PartialPrompt"]
+    },
+    {
+      "id": "TC-008",
+      "name": "ForEachState",
+      "type": "core",
+      "code_locations": ["core/utility.py"],
+      "feature_ids": ["FT-008"],
+      "symbols": ["ForEachState", "hashed_as_strings"]
+    },
+    {
+      "id": "TC-009",
+      "name": "StateStore & StateFile",
+      "type": "core",
+      "code_locations": ["core/statestore.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["DRV_StateStore", "DRV_StateFile"]
+    },
+    {
+      "id": "TC-010",
+      "name": "Error Utilities",
+      "type": "util",
+      "code_locations": ["core/err.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["on_node_error", "raise_error"]
+    },
+    {
+      "id": "TC-011",
+      "name": "Memory Management",
+      "type": "util",
+      "code_locations": ["core/memory.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["gc_comfyui"]
+    },
+    {
+      "id": "TC-012",
+      "name": "NodeCategories",
+      "type": "util",
+      "code_locations": ["categories.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["NodeCategories"]
+    },
+    {
+      "id": "TC-013",
+      "name": "Node Registration & Manifest",
+      "type": "entry",
+      "code_locations": ["__init__.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "MANIFEST", "update_node_index"]
+    },
+    {
+      "id": "TC-014",
+      "name": "Shared File Utilities",
+      "type": "util",
+      "code_locations": ["shared.py"],
+      "feature_ids": ["FT-008"],
+      "symbols": ["list_files_in_directory", "list_images_in_directory", "pick_random_by_weight"]
+    },
+    {
+      "id": "TC-015",
+      "name": "Calculation Nodes",
+      "type": "node",
+      "code_locations": ["calculate.py"],
+      "feature_ids": ["FT-005"],
+      "symbols": ["DVB_Calculation", "DVB_Multiply", "DVB_Divide"]
+    },
+    {
+      "id": "TC-016",
+      "name": "Camera Animation Nodes",
+      "type": "node",
+      "code_locations": ["camera.py"],
+      "feature_ids": ["FT-003"],
+      "symbols": ["DVB_Zoom", "DVB_ZoomSine", "DVB_LinearCameraPan", "DVB_SineCameraPan", "DVB_LinearCameraRoll", "DVB_SineCameraRoll", "BatchCameraMotion"]
+    },
+    {
+      "id": "TC-017",
+      "name": "Frame Set Editing Nodes",
+      "type": "node",
+      "code_locations": ["cutandjoin.py"],
+      "feature_ids": ["FT-001", "FT-002"],
+      "symbols": ["DVB_FrameSetReindex", "DVB_FrameSetOffset", "DVB_ConcatFrameSets", "DVB_MergeFrames", "DVB_Splitter", "DVB_Reverse", "DVB_FrameSetRepeat", "DVB_FrameSetSplitBeginning", "DVB_FrameSetSplitEnd"]
+    },
+    {
+      "id": "TC-018",
+      "name": "Inbetween Frames Node",
+      "type": "node",
+      "code_locations": ["generate.py"],
+      "feature_ids": ["FT-011"],
+      "symbols": ["DVB_InbetweenFrames"]
+    },
+    {
+      "id": "TC-019",
+      "name": "Input Field Nodes",
+      "type": "node",
+      "code_locations": ["inputfields.py"],
+      "feature_ids": ["FT-006"],
+      "symbols": ["DVB_InputText", "DVB_InputString", "DVB_InputFloat", "DVB_InputInt"]
+    },
+    {
+      "id": "TC-020",
+      "name": "Image Loader Node",
+      "type": "node",
+      "code_locations": ["loaders.py"],
+      "feature_ids": ["FT-010"],
+      "symbols": ["DVB_LoadImageFromPath"]
+    },
+    {
+      "id": "TC-021",
+      "name": "Prompt Construction Nodes",
+      "type": "node",
+      "code_locations": ["prompting.py"],
+      "feature_ids": ["FT-007"],
+      "symbols": ["RandomPromptScheduleGenerator", "DreamWeightedPromptBuilder", "DreamPromptFinalizer"]
+    },
+    {
+      "id": "TC-022",
+      "name": "Transition Nodes",
+      "type": "node",
+      "code_locations": ["transitions.py"],
+      "feature_ids": ["FT-004"],
+      "symbols": ["DVB_FadeToBlack", "DVB_FadeFromBlack", "DVB_BlendedTransition", "FadeProc"]
+    },
+    {
+      "id": "TC-023",
+      "name": "Utility Nodes",
+      "type": "node",
+      "code_locations": ["utility.py"],
+      "feature_ids": ["FT-008", "FT-009"],
+      "symbols": ["DVB_IntToString", "DVB_FloatToString", "DVB_StringBuilder", "DVB_ForEachFilename", "DVB_ForEachCheckpoint", "DVB_StringTokenizer", "DVB_FrameDimensions", "DVB_FrameSetDimensionsScaled", "DVB_TraceMalloc"]
+    },
+    {
+      "id": "TC-024",
+      "name": "Wrapping Nodes",
+      "type": "node",
+      "code_locations": ["wrapping.py"],
+      "feature_ids": ["FT-001"],
+      "symbols": ["DVB_ImagesToFrameSet", "DVB_UnwrapFrameSet"]
+    },
+    {
+      "id": "TC-025",
+      "name": "Installer Scripts",
+      "type": "util",
+      "code_locations": ["install.py", "uninstall.py", "enable.py", "disable.py"],
+      "feature_ids": ["FT-012"],
+      "symbols": ["run_install", "run_uninstall", "run_enable", "run_disable"]
+    }
+  ],
+  "features": [
+    {
+      "id": "FT-001",
+      "name": "Frame Set Core Operations",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-001", "TC-003", "TC-017", "TC-024"],
+      "phase": null
+    },
+    {
+      "id": "FT-002",
+      "name": "Frame Set Editing",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-001", "TC-017"],
+      "phase": null
+    },
+    {
+      "id": "FT-003",
+      "name": "Camera Animation",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-005", "TC-006", "TC-016"],
+      "phase": null
+    },
+    {
+      "id": "FT-004",
+      "name": "Video Transitions",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-005", "TC-022"],
+      "phase": null
+    },
+    {
+      "id": "FT-005",
+      "name": "Calculations & Math",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-015"],
+      "phase": null
+    },
+    {
+      "id": "FT-006",
+      "name": "Input Widgets",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-019"],
+      "phase": null
+    },
+    {
+      "id": "FT-007",
+      "name": "Prompt Construction",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-007", "TC-021"],
+      "phase": null
+    },
+    {
+      "id": "FT-008",
+      "name": "File Iteration",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-008", "TC-014", "TC-023"],
+      "phase": null
+    },
+    {
+      "id": "FT-009",
+      "name": "Utility Nodes",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-023"],
+      "phase": null
+    },
+    {
+      "id": "FT-010",
+      "name": "Image I/O",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-020"],
+      "phase": null
+    },
+    {
+      "id": "FT-011",
+      "name": "Inbetween Frame Generation",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-018"],
+      "phase": null
+    },
+    {
+      "id": "FT-012",
+      "name": "Core Infrastructure",
+      "status": "active",
+      "requirement_ids": [],
+      "component_ids": ["TC-002", "TC-004", "TC-009", "TC-010", "TC-011", "TC-012", "TC-013", "TC-025"],
+      "phase": null
+    }
+  ],
+  "requirements": [],
+  "architecture_decisions": [],
+  "actions": []
+}
