@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(manage-codebase-rebuild)",
+      "Skill(manage-codebase-rebuild:*)",
+      "mcp__maestro-tools__read_many_files",
+      "mcp__maestro-tools__read_file",
+      "mcp__maestro-tools__write_file",
+      "Bash(maestro spec *)",
+      "Skill(spec-setup)",
+      "Skill(spec-setup:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git rm *)",
+      "Bash(git checkout *)",
+      "Bash(git push *)",
+      "Bash(gh auth *)"
+    ]
+  }
+}
